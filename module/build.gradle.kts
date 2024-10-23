@@ -3,8 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val verCode = 1
-val verName = "v1.0"
+val verCode = 2
+val verName = "v1.0.1"
 val pkgName = "top.yukonga.disableMiFontOverlay"
 
 
@@ -13,12 +13,12 @@ android {
     namespace = pkgName
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 
     externalNativeBuild {
@@ -33,6 +33,11 @@ android {
         targetSdk = 35
         versionCode = verCode
         versionName = verName
+
+        ndk {
+            abiFilters.add("armeabi-v7a")
+            abiFilters.add("arm64-v8a")
+        }
     }
 
     buildTypes {
@@ -76,7 +81,7 @@ tasks.register<Zip>("assembleModule") {
         }
     }
     destinationDirectory.set(layout.buildDirectory.dir("outputs/module"))
-    archiveFileName.set("DisableMiFontOverlay.zip")
+    archiveFileName.set("DisableMiFontOverla_${verName}.zip")
 }
 
 afterEvaluate {
