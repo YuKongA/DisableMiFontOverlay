@@ -21,11 +21,5 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class top.yukonga.disableMiFontOverlay.Main {
-    public static void main(...);
+    public static void init(...);
 }
-
-# This is generated automatically by the Android Gradle plugin.
--dontwarn androidx.annotation.NonNull
--dontwarn androidx.annotation.Nullable
--dontwarn androidx.annotation.RequiresApi
--dontwarn androidx.annotation.VisibleForTesting

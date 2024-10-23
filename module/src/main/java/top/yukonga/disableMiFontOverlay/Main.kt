@@ -8,12 +8,14 @@ object Main {
     private const val TAG = "DisableMiFontOverlay"
 
     @JvmStatic
-    fun main() {
+    fun init() {
         runCatching {
             FontSettings::class.java
                 .getDeclaredField("HAS_MIUI_VAR_FONT")
-                .apply { isAccessible = true }
-                .set(null, false)
+                .let { field ->
+                    field.isAccessible = true
+                    field.set(null, false)
+                }
         }.onFailure {
             Log.e(TAG, "Failed to replace isMiuiOptimizeEnabled return value: $it", it)
         }

@@ -3,8 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 
-val verCode = 2
-val verName = "v1.0.1"
+val verCode = 3
+val verName = "v1.0.2"
 val pkgName = "top.yukonga.disableMiFontOverlay"
 
 
