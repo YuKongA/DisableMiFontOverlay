@@ -1,0 +1,6 @@
+id=DisableMiFontOverlay
+name=DisableMiFontOverlay
+version=%%VERSION%%
+versionCode=%%VERSIONCODE%%
+author=YuKongA
+description=Disable Xiaomi's Font Overlay
