@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cerrno>
+
 namespace zygiskmodule {
 
 static constexpr auto TAG = "DisableMiFontOverlay/JNI";
