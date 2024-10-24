@@ -1,25 +1,14 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
 }
 
 val verCode = 3
-val verName = "v1.0.2"
+val verName = "v1.0.3"
 val pkgName = "top.yukonga.disableMiFontOverlay"
-
 
 android {
     compileSdk = 35
     namespace = pkgName
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_21.toString()
-    }
 
     externalNativeBuild {
         ndkBuild {
@@ -40,13 +29,6 @@ android {
         }
     }
 
-    buildTypes {
-        named("release") {
-            isShrinkResources = true
-            isMinifyEnabled = true
-            proguardFiles("proguard-rules.pro")
-        }
-    }
 }
 
 dependencies {
@@ -57,7 +39,7 @@ tasks.register<Zip>("assembleModule") {
     group = "module"
     val zipTree = zipTree(layout.buildDirectory.file("outputs/apk/release/module-release-unsigned.apk").get().asFile)
     from(zipTree) {
-        include("assets/**", "lib/**", "classes.dex")
+        include("assets/**", "lib/**")
         exclude("assets/module.prop")
         eachFile {
             path = when {
