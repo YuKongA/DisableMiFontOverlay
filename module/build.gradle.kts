@@ -54,6 +54,7 @@ dependencies {
 }
 
 tasks.register<Zip>("assembleModule") {
+    group = "module"
     val zipTree = zipTree(layout.buildDirectory.file("outputs/apk/release/module-release-unsigned.apk").get().asFile)
     from(zipTree) {
         include("assets/**", "lib/**", "classes.dex")
