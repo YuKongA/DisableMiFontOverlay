@@ -5,8 +5,6 @@
 #include <unistd.h>
 #include "zygisk.hpp"
 
-#include "zygisk.hpp"
-
 static constexpr auto TAG = "DisableMiFontOverlay";
 
 #define LOGD(...)     __android_log_print(ANDROID_LOG_DEBUG, TAG, __VA_ARGS__)
@@ -49,7 +47,8 @@ private:
             return;
         }
 
-        jfieldID hasCustomFontField = env->GetStaticFieldID(fontSettingsClass, "HAS_MIUI_VAR_FONT","Z");
+        jfieldID hasCustomFontField = env->GetStaticFieldID(fontSettingsClass, "HAS_MIUI_VAR_FONT",
+                                                            "Z");
         if (hasCustomFontField == nullptr) {
             LOGD("Failed to find HAS_MIUI_VAR_FONT field");
             return;
