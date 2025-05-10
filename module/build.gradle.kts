@@ -7,7 +7,7 @@ val verName = "v1.0.3"
 val pkgName = "top.yukonga.disableMiFontOverlay"
 
 android {
-    compileSdk = 35
+    compileSdk = 36
     namespace = pkgName
 
     externalNativeBuild {
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId = pkgName
         minSdk = 33
-        targetSdk = 35
+        targetSdk = 36
         versionCode = verCode
         versionName = verName
 
