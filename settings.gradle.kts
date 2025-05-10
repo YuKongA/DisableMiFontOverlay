@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DisableMiFontOveray"
+rootProject.name = "FixXiaomiBoldFont"
 include(":module",":hiddenapi")

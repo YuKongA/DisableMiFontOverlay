@@ -5,11 +5,11 @@
 #include <unistd.h>
 #include "zygisk.hpp"
 
-static constexpr auto TAG = "DisableMiFontOverlay";
+static constexpr auto TAG = "FixXiaomiBoldFont";
 
 #define LOGD(...)     __android_log_print(ANDROID_LOG_DEBUG, TAG, __VA_ARGS__)
 
-class DisableMiFontOverlay : public zygisk::ModuleBase {
+class FixXiaomiBoldFont : public zygisk::ModuleBase {
 public:
     void onLoad(zygisk::Api *pApi, JNIEnv *pEnv) override {
         this->api = pApi;
@@ -41,22 +41,24 @@ private:
     JNIEnv *env = nullptr;
 
     void injectDex() {
-        jclass fontSettingsClass = env->FindClass("miui/util/font/FontSettings");
+        jclass fontSettingsClass = env->FindClass("miui/util/font/FontNameUtil");
         if (fontSettingsClass == nullptr) {
-            LOGD("Failed to find FontSettings class");
+            LOGD("Failed to find FontNameUtil class");
             return;
         }
 
-        jfieldID hasCustomFontField = env->GetStaticFieldID(fontSettingsClass, "HAS_MIUI_VAR_FONT",
-                                                            "Z");
+        jfieldID hasCustomFontField = env->GetStaticFieldID(fontSettingsClass,
+                                                            "FONT_NAME_MIPRO_MEDIUM",
+                                                            "[Ljava/lang/String;");
         if (hasCustomFontField == nullptr) {
-            LOGD("Failed to find HAS_MIUI_VAR_FONT field");
+            LOGD("Failed to find FONT_NAME_MIPRO_MEDIUM field");
             return;
         }
 
-        env->SetStaticBooleanField(fontSettingsClass, hasCustomFontField, JNI_FALSE);
-        LOGD("Successfully set HAS_MIUI_VAR_FONT to false");
+        jobjectArray boldFontArray = env->NewObjectArray(1, env->FindClass("java/lang/String"),
+                                                         env->NewStringUTF("miui-bold"));
+        env->SetStaticObjectField(fontSettingsClass, hasCustomFontField, boldFontArray);
     }
 };
 
-REGISTER_ZYGISK_MODULE(DisableMiFontOverlay)
+REGISTER_ZYGISK_MODULE(FixXiaomiBoldFont)

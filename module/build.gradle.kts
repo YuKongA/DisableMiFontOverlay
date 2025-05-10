@@ -3,8 +3,8 @@ plugins {
 }
 
 val verCode = 3
-val verName = "v1.0.3"
-val pkgName = "top.yukonga.disableMiFontOverlay"
+val verName = "v1.0.0"
+val pkgName = "top.yukonga.fixXiaomiBoldFont"
 
 android {
     compileSdk = 36
@@ -64,7 +64,7 @@ tasks.register<Zip>("assembleModule") {
         }
     }
     destinationDirectory.set(layout.buildDirectory.dir("outputs/module"))
-    archiveFileName.set("DisableMiFontOverlay_${verName}.zip")
+    archiveFileName.set("FixXiaomiBoldFont_${verName}.zip")
 }
 
 afterEvaluate {

@@ -1,6 +1,6 @@
-id=DisableMiFontOverlay
-name=DisableMiFontOverlay
+id=FixXiaomiBoldFont
+name=FixXiaomiBoldFont
 version=%%VERSION%%
 versionCode=%%VERSIONCODE%%
 author=YuKongA
-description=Disable Xiaomi's Font Overlay
+description=Fixed Xiaomi bold font rendering issue
