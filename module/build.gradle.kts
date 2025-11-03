@@ -2,33 +2,36 @@ plugins {
     id("com.android.application")
 }
 
-val verCode = 3
-val verName = "v1.0.3"
+val verCode = 4
+val verName = "v1.0.4"
 val pkgName = "top.yukonga.disableMiFontOverlay"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
 
 android {
     compileSdk = 36
     namespace = pkgName
-
     externalNativeBuild {
         ndkBuild {
             path = file("jni/Android.mk")
         }
     }
-
     defaultConfig {
         applicationId = pkgName
         minSdk = 33
         targetSdk = 36
         versionCode = verCode
         versionName = verName
-
         ndk {
-            abiFilters.add("armeabi-v7a")
             abiFilters.add("arm64-v8a")
         }
     }
-
+    compileSdkMinor = 1
+    buildToolsVersion = "36.1.0"
+    ndkVersion = "29.0.14206865"
 }
 
 dependencies {
