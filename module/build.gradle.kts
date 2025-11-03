@@ -2,8 +2,8 @@ plugins {
     id("com.android.application")
 }
 
-val verCode = 4
-val verName = "v1.0.4"
+val verCode = 5
+val verName = "v1.0.5"
 val pkgName = "top.yukonga.disableMiFontOverlay"
 
 java {
@@ -26,7 +26,7 @@ android {
         versionCode = verCode
         versionName = verName
         ndk {
-            abiFilters.add("arm64-v8a")
+            abiFilters.addAll(mutableSetOf("arm64-v8a", "armeabi-v7a"))
         }
     }
     compileSdkMinor = 1
